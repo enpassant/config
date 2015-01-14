@@ -31,8 +31,6 @@ RUN git clone https://www.github.com/lokaltog/powerline.git tools/powerline
 # Create github directory
 RUN mkdir -p code/github_code
 
-RUN git clone https://github.com/gmarik/Vundle.vim.git /home/enpassant/.vim/bundle/Vundle.vim
-
 # Create .zshrc.include file to prepare for manually installed tools
 RUN echo "export PATH=/home/enpassant/install/bin:$PATH\nexport LD_LIBRARY_PATH=/home/enpassant/lib:$LD_LIBRARY_PATH\n" > /home/enpassant/.zshrc.include
 
@@ -40,12 +38,15 @@ WORKDIR code/github_code
 
 RUN for repo in `curl https://api.github.com/users/enpassant/repos  | grep clone_url | awk -F " " '{print $2}' | sed "s/\"//g" | sed "s/,//g"`; do git clone $repo; done
 
+WORKDIR /home/enpassant
+
 RUN ln -s code/github_code/config/.vim
 RUN ln -s code/github_code/config/.vimrc
 RUN ln -s code/github_code/config/.zshrc
 
+RUN mkdir .vim/bundle
+RUN git clone https://github.com/gmarik/Vundle.vim.git /home/enpassant/.vim/bundle/Vundle.vim
 
-WORKDIR /home/enpassant
 RUN echo "To set up your vim environment, run the command :PluginInstall after launching vim." >> README
 
 USER root
