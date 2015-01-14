@@ -10,13 +10,13 @@ RUN apt-get -yq install zsh git
 # Create user
 RUN useradd -m -g sudo -s /bin/zsh enpassant
 
-RUN apt-get install -yq openssh-server
-RUN mkdir /var/run/sshd
+#RUN apt-get install -yq openssh-server
+#RUN mkdir /var/run/sshd
 
 # Install vim
 RUN apt-get -yq install vim curl
 
-RUN echo "temp123\ntemp123" | passwd enpassant
+#RUN echo "temp123\ntemp123" | passwd enpassant
 
 EXPOSE 22
 
