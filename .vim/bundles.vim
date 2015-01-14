@@ -1,60 +1,47 @@
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'scrooloose/nerdtree'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'othree/html5.vim'
-Bundle 'othree/xml.vim'
-Bundle 'othree/javascript-libraries-syntax.vim'
-Bundle 'majutsushi/tagbar'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'scrooloose/nerdtree'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'othree/html5.vim'
+Plugin 'othree/xml.vim'
+Plugin 'othree/javascript-libraries-syntax.vim'
+Plugin 'majutsushi/tagbar'
 " Bundle 'wincent/Command-T'
-Bundle 'jlanzarotta/bufexplorer'
-Bundle 'tpope/vim-fugitive'
-Bundle 'gregsexton/gitv'
-Bundle 'tpope/vim-surround.git'
-Bundle 'tpope/vim-unimpaired'
-Bundle 'nelstrom/vim-visual-star-search'
-Bundle 'ggreer/the_silver_searcher'
-" Bundle 'marijnh/tern_for_vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Lokaltog/vim-powerline'
-" Bundle 'vim-scripts/sessions.vim'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'SirVer/ultisnips'
-Bundle 'honza/vim-snippets'
-Bundle 'Rykka/riv.vim'
-Bundle 'vim-scripts/L9'
-Bundle 'othree/vim-autocomplpop'
-Bundle 'drmikehenry/vim-fontsize'
+Plugin 'jlanzarotta/bufexplorer'
+Plugin 'tpope/vim-fugitive'
+Plugin 'gregsexton/gitv'
+Plugin 'tpope/vim-surround.git'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'nelstrom/vim-visual-star-search'
+Plugin 'ggreer/the_silver_searcher'
+" Plugin 'marijnh/tern_for_vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Lokaltog/vim-powerline'
+" Plugin 'vim-scripts/sessions.vim'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'Rykka/riv.vim'
+Plugin 'vim-scripts/L9'
+Plugin 'othree/vim-autocomplpop'
+Plugin 'drmikehenry/vim-fontsize'
 
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
 "
-" " My bundles here:
-" "
-" " original repos on GitHub
-" Bundle 'tpope/vim-fugitive'
-" Bundle 'Lokaltog/vim-easymotion'
-" Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Bundle 'tpope/vim-rails.git'
-" " vim-scripts repos
-" Bundle 'L9'
-" Bundle 'FuzzyFinder'
-" " non-GitHub repos
-" Bundle 'git://git.wincent.com/command-t.git'
-" " Git repos on your local machine (i.e. when working on your own plugin)
-" Bundle 'file:///Users/gmarik/path/to/plugin'
-" " ...
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
 "
-" filetype plugin indent on     " required!
-" "
-" " Brief help
-" " :BundleList          - list configured bundles
-" " :BundleInstall(!)    - install (update) bundles
-" " :BundleSearch(!) foo - search (or refresh cache first) for foo
-" " :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
-" "
-" " see :h vundle for more details or wiki for FAQ
-" " NOTE: comments after Bundle commands are not allowed.
-
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+"

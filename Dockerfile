@@ -31,7 +31,7 @@ RUN git clone https://www.github.com/lokaltog/powerline.git tools/powerline
 # Create github directory
 RUN mkdir -p code/github_code
 
-#RUN git clone https://github.com/gmarik/Vundle.vim.git /home/enpassant/.vim/bundle/Vundle.vim
+RUN git clone https://github.com/gmarik/Vundle.vim.git /home/enpassant/.vim/bundle/Vundle.vim
 
 # Create .zshrc.include file to prepare for manually installed tools
 RUN echo "export PATH=/home/enpassant/install/bin:$PATH\nexport LD_LIBRARY_PATH=/home/enpassant/lib:$LD_LIBRARY_PATH\n" > /home/enpassant/.zshrc.include
