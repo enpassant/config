@@ -1,6 +1,7 @@
 " vim: foldmethod=marker
 
 " Vundle bundle {{{1
+set nocompatible
 filetype off                  " required!
 
 source ~/.vim/bundles.vim
@@ -20,10 +21,16 @@ set tags=./tags,tags;/
 set hidden
 
 " line numbers
-set number
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
+highlight Normal cterm=NONE ctermbg=NONE
+
+let g:gitgutter_sign_column_always = 1
+set number
+
 set mouse=a
+
+set clipboard=unnamedplus
 
 " eclim
 set nocompatible
@@ -100,9 +107,9 @@ let g:Gitv_TruncateCommitSubjects = 1
 set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-s-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-s-k>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
@@ -151,11 +158,14 @@ if has("autocmd")
 
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
     autocmd BufWriteCmd *.html,*.css,*.gtpl,*.md,*.rst :call Refresh_firefox()
+    autocmd BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
 endif
 
 " Solarized
+set t_Co=16
 syntax on
 " let g:solarized_termcolors = 256
+let g:solarized_termtrans = 1
 colorscheme solarized
 " colorscheme torte
 " colorscheme desert
