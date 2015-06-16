@@ -11,6 +11,7 @@ export CLICOLOR=1
 #export LS_COLORS=Gxfxcxdxbxegedabagacad
 # }}}
 
+source ~/.zsh_exports
 eval `dircolors`
 
 # Scala {{{
@@ -38,6 +39,7 @@ function tmuxkill() {
 
 # Alias' {{{
 alias vi="vim"
+alias vim="vim --servername gvim"
 alias r="source ~/.zshrc"
 alias tat='tmux new-session -As $(basename "$PWD" | tr . -)' # will attach if session exists, or create a new session
 alias tmuxsrc="tmux source-file ~/.tmux.conf"
