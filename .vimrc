@@ -25,8 +25,12 @@ highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE gui
 
 highlight Normal cterm=NONE ctermbg=NONE
 
+set guifont=Liberation\ Mono\ for\ Powerline\ 11
+let g:airline_powerline_fonts = 1
+
 let g:gitgutter_sign_column_always = 1
 set number
+set relativenumber
 
 set mouse=a
 
@@ -60,7 +64,7 @@ if executable('ag')
 endif
 
 " When the page starts to scroll, keep the cursor 8 lines from the top and 8 lines from the bottom
-set scrolloff=8
+set scrolloff=4
 
 let g:tagbar_type_javascript = {
             \ 'ctagstype' : 'javascript',
@@ -162,9 +166,9 @@ if has("autocmd")
 endif
 
 " Solarized
-set t_Co=16
+set t_Co=256
 syntax on
-" let g:solarized_termcolors = 256
+let g:solarized_termcolors = 256
 let g:solarized_termtrans = 1
 colorscheme solarized
 " colorscheme torte
@@ -214,6 +218,9 @@ set tabstop=8
 " http://vim.wikia.com/wiki/Change_cursor_shape_in_different_modes
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+" Allow backspacing like a normal editor in insert mode.
+set backspace=indent,eol,start
 
 " pastetoggle http://stackoverflow.com/questions/2861627/paste-in-insert-mode
 " set paste
@@ -324,6 +331,8 @@ nmap <silent> <leader>mm :Repl http://localhost/
 nnoremap <silent> <Leader>tb :TagbarToggle<CR>
 nnoremap <silent> <Leader>te :!gnome-terminal &<CR><CR>
 
+nnoremap <silent> <leader>tt :! ctags -R -f ./tags .<CR><CR>
+
 " NerdTree
 map <leader>n :NERDTreeToggle<cr>
 map <leader>r :NERDTreeFind<cr>
@@ -342,10 +351,6 @@ nnoremap <Leader>s :s/\<<C-r><C-w>\>//gc<left><left><left>
 " remove whitespace http://vim.wikia.com/wiki/Remove_unwanted_spaces
 " called by leader-m
 nnoremap <silent> <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
-
-" ignoring/enabling tests
-nmap <leader>in :%s/it("/ignore("/<CR>
-nmap <leader>it :%s/ignore(/it(/<CR>
 
 map <C-s> :w<CR>
 imap <C-s> <ESC>:w<CR><Insert>
@@ -457,6 +462,9 @@ nmap <C-down> ]e
 vmap <C-up> [egv
 vmap <C-down> ]egv
 
+" Toggle highlighting
+nnoremap <F3> :noh<CR>
+
 " Copy the current word or visually selected text to the clipboard:
 
 nnoremap <F4> "+yiw
@@ -466,3 +474,6 @@ vnoremap <F4> "+y
 
 nnoremap <F5> viw"+p
 vnoremap <F5> "+p
+
+" Toggle relativenumber
+nnoremap <F6> :set rnu!<CR>
