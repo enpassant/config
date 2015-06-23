@@ -27,6 +27,7 @@ highlight Normal cterm=NONE ctermbg=NONE
 
 set guifont=Liberation\ Mono\ for\ Powerline\ 11
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tagbar#enabled = 0
 
 let g:gitgutter_sign_column_always = 1
 set number
@@ -359,7 +360,7 @@ imap <C-s> <ESC>:w<CR><Insert>
 map <C-g> <C-]>
 
 " Ctl-X close the current buffer
-map <C-x> <Plug>Kwbd
+nmap <C-x> <Plug>Kwbd
 
 " Remap VIM 0 to first non-blank character
 " map 0 ^
@@ -467,13 +468,13 @@ nnoremap <F3> :noh<CR>
 
 " Copy the current word or visually selected text to the clipboard:
 
-nnoremap <F4> "+yiw
-vnoremap <F4> "+y
+nnoremap <F4> "zyiw
+vnoremap <F4> "zy
 
 " Replace the current word or visually selected text with the clipboard contents:
 
-nnoremap <F5> viw"+p
-vnoremap <F5> "+p
+nnoremap <F5> viw"zp
+vnoremap <F5> "zp
 
 " Toggle relativenumber
 nnoremap <F6> :set rnu!<CR>
