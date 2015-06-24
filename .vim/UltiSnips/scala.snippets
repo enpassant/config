@@ -1,0 +1,28 @@
+snippet actor "Actor definitin" b
+import akka.actor.{Actor, ActorLogging, ActorRef, Props}
+
+class $1 extends Actor with ActorLogging {
+  import $1._
+
+  def receive = {
+    case $2 =>
+      $0
+  }
+}
+
+object $1 {
+  case object $2
+}
+endsnippet
+
+snippet context "rspec: context block"
+context "$1" do
+	${0:${VISUAL:# assertions...}}
+end
+endsnippet
+
+snippet up "Unique Pointer" i
+std::unique_ptr<${1:`!p
+snip.rv = snip.v.text.strip("*") or "klass"
+`}>
+endsnippet
