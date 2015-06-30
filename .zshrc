@@ -40,6 +40,7 @@ function tmuxkill() {
 # Alias' {{{
 alias vi="vim"
 alias vim="vim --servername gvim"
+alias nvim="NVIM_LISTEN_ADDRESS=127.0.0.1:22913 nvim"
 alias r="source ~/.zshrc"
 alias tat='tmux new-session -As $(basename "$PWD" | tr . -)' # will attach if session exists, or create a new session
 alias tmuxsrc="tmux source-file ~/.tmux.conf"
