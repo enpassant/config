@@ -6,14 +6,9 @@ filetype off                  " required!
 
 source ~/.vim/bundles.vim
 
-" set shell=/bin/sh
-
-" pathogen
-execute pathogen#infect()
-syntax on
-"filetype plugin indent on
-
 " Preferences {{{1
+syntax on
+
 " ctags
 set tags=./tags,tags;/
 
