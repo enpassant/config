@@ -65,7 +65,7 @@ if executable('ag')
 endif
 
 " When the page starts to scroll, keep the cursor 8 lines from the top and 8 lines from the bottom
-set scrolloff=4
+"set scrolloff=4
 
 let g:tagbar_type_javascript = {
             \ 'ctagstype' : 'javascript',
@@ -126,46 +126,6 @@ set wrap
 set textwidth=0
 set wrapmargin=0
 
-" Autocommands {{{2
-if has("autocmd")
-    " http://stackoverflow.com/questions/1551231/highlight-variable-under-cursor-in-vim-like-in-netbeans
-    "  autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
-
-    " highlight unwanted(trailing) whitespace
-    " + have this highlighting not appear whilst you are typing in insert mode
-    " + have the highlighting of whitespace apply when you open new buffers
-    " http://vim.wikia.com/wiki/Highlight_unwanted_spaces
-    highlight ExtraWhitespace ctermbg=red guibg=red
-    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-    autocmd BufWinLeave * call clearmatches()
-
-    autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags noci
-    autocmd FileType html set omnifunc=htmlcomplete#CompleteTags noci
-
-    " http://stackoverflow.com/questions/16743112/open-item-from-quickfix-window-in-vertical-split
-    autocmd! FileType qf nnoremap <buffer> <leader><Enter> <C-w><Enter><C-w>L
-
-    autocmd BufReadPost fugitive://* set bufhidden=delete
-
-    autocmd User fugitive
-                \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
-                \   nnoremap <buffer> .. :edit %:h<CR> |
-                \ endif
-
-    " Format scala code
-    let g:scala_sort_across_groups=1
-    " au BufEnter *.scala setl formatprg=java\ -jar\ /Users/stefanb/Exec/scalariform.jar\ -f\ -q\ +alignParameters\ +alignSingleLineCaseStatements\ +doubleIndentClassDeclaration\ +preserveDanglingCloseParenthesis\ +rewriteArrowSymbols\ +preserveSpaceBeforeArguments\ --stdin\ --stdout
-    autocmd! FileType scala nmap <leader>m :SortScalaImports<CR>
-    " gggqG<C-o><C-o><leader><w>
-
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-    autocmd BufWriteCmd *.html,*.css,*.gtpl,*.md,*.rst :call Refresh_firefox()
-    autocmd BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
-endif
-
 " Solarized
 set t_Co=256
 syntax on
@@ -183,7 +143,7 @@ let mapleader = ','
 set ignorecase smartcase incsearch hlsearch
 
 " don't display welcome
-set shortmess+=I
+"set shortmess+=I
 
 " Sets how many lines of history VIM has to remember
 set history=700
@@ -268,6 +228,47 @@ let g:rbpt_colorpairs = [
             \ ]
 " let g:rbpt_max = 16
 " let g:rbpt_loadcmd_toggle = 0
+
+" Autocommands {{{2
+if has("autocmd")
+    " http://stackoverflow.com/questions/1551231/highlight-variable-under-cursor-in-vim-like-in-netbeans
+    "  autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+
+    " highlight unwanted(trailing) whitespace
+    " + have this highlighting not appear whilst you are typing in insert mode
+    " + have the highlighting of whitespace apply when you open new buffers
+    " http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+    highlight ExtraWhitespace ctermbg=red guibg=red
+    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    autocmd BufWinLeave * call clearmatches()
+
+    autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags noci
+    autocmd FileType html set omnifunc=htmlcomplete#CompleteTags noci
+
+    " http://stackoverflow.com/questions/16743112/open-item-from-quickfix-window-in-vertical-split
+    autocmd! FileType qf nnoremap <buffer> <leader><Enter> <C-w><Enter><C-w>L
+
+    autocmd BufReadPost fugitive://* set bufhidden=delete
+
+    autocmd User fugitive
+                \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+                \   nnoremap <buffer> .. :edit %:h<CR> |
+                \ endif
+
+    " Format scala code
+    let g:scala_sort_across_groups=1
+    " au BufEnter *.scala setl formatprg=java\ -jar\ /Users/stefanb/Exec/scalariform.jar\ -f\ -q\ +alignParameters\ +alignSingleLineCaseStatements\ +doubleIndentClassDeclaration\ +preserveDanglingCloseParenthesis\ +rewriteArrowSymbols\ +preserveSpaceBeforeArguments\ --stdin\ --stdout
+    autocmd! FileType scala nmap <leader>m :SortScalaImports<CR>
+    " gggqG<C-o><C-o><leader><w>
+
+    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+    autocmd BufWriteCmd *.html,*.css,*.gtpl,*.md,*.rst :call Refresh_firefox()
+    autocmd BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
+endif
+
 " au VimEnter * RainbowParenthesesToggle
 " au Syntax * RainbowParenthesesLoadRound
 " au Syntax * RainbowParenthesesLoadSquare
