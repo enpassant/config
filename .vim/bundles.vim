@@ -11,16 +11,15 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-abolish'
-Plug 'nelstrom/vim-visual-star-search'
-Plug 'ggreer/the_silver_searcher'
 " Plug 'marijnh/tern_for_vim'
-Plug 'kien/ctrlp.vim'
-" Plug 'Lokaltog/vim-powerline'
 " Plug 'vim-scripts/sessions.vim'
 Plug 'godlygeek/tabular'
-Plug 'Rykka/riv.vim'
-Plug 'vim-scripts/L9'
-"--- Look&Feel ---
+"Plug 'vim-scripts/L9'
+"--- Search & Replace ---
+Plug 'nelstrom/vim-visual-star-search'
+Plug 'ggreer/the_silver_searcher'
+Plug 'kien/ctrlp.vim'
+"--- Look & Feel ---
 Plug 'bling/vim-airline'
 Plug 'altercation/vim-colors-solarized'
 Plug 'drmikehenry/vim-fontsize'
@@ -45,6 +44,8 @@ Plug 'othree/javascript-libraries-syntax.vim',       {'for': 'javascript'}
 Plug 'derekwyatt/vim-scala',                         {'for': 'scala'}
 "--- Go ---
 Plug 'fatih/vim-go',                                 {'for': 'go'}
+"--- reStructuredText ---
+Plug 'Rykka/riv.vim',                                {'for': 'rst'}
 
 call plug#end()
 
