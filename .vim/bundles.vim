@@ -4,17 +4,12 @@ call plug#begin('~/.vim/bundle')
 "call vundle#begin()
 
 "--- Tools ---
-"Plug 'gmarik/Vundle.vim'
 Plug 'scrooloose/nerdtree',                          {'on': 'NERDTreeToggle' }
-" Plug 'wincent/Command-T'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-abolish'
-" Plug 'marijnh/tern_for_vim'
-" Plug 'vim-scripts/sessions.vim'
-Plug 'godlygeek/tabular'
-"Plug 'vim-scripts/L9'
+Plug 'godlygeek/tabular',                            {'on': 'Tabularize'}
 "--- Search & Replace ---
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'ggreer/the_silver_searcher'
@@ -46,6 +41,12 @@ Plug 'derekwyatt/vim-scala',                         {'for': 'scala'}
 Plug 'fatih/vim-go',                                 {'for': 'go'}
 "--- reStructuredText ---
 Plug 'Rykka/riv.vim',                                {'for': 'rst'}
+"--- Removed ---
+"Plug 'gmarik/Vundle.vim'
+"Plug 'wincent/Command-T'
+"Plug 'marijnh/tern_for_vim'
+"Plug 'vim-scripts/sessions.vim'
+"Plug 'vim-scripts/L9'
 
 call plug#end()
 
