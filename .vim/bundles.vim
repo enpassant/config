@@ -24,7 +24,7 @@ Plug 'gregsexton/gitv'
 Plug 'airblade/vim-gitgutter'
 "--- Programming ---
 Plug 'Valloric/YouCompleteMe',                       {'do':  './install.sh --clang-completer' }
-Plug 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar',                            {'on': 'TagbarToggle' }
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdcommenter'
 "--- Markdown --
