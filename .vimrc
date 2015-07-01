@@ -270,28 +270,6 @@ endif
 " au Syntax * RainbowParenthesesLoadBraces
 
 " Functions {{{1
-function! Comment()
-    let ext = tolower(expand('%:e'))
-    if ext == 'php' || ext == 'rb' || ext == 'sh' || ext == 'py'
-        silent s/^/\#/
-    elseif ext == 'js' || ext == 'scala'
-        silent s:\v^(\s*):\/\/\1:g
-    elseif ext == 'vim'
-        silent s:^:\":g
-    endif
-endfunction
-
-function! Uncomment()
-    let ext = tolower(expand('%:e'))
-    if ext == 'php' || ext == 'rb' || ext == 'sh' || ext == 'py'
-        silent s/^\#//
-    elseif ext == 'js' || ext == 'scala'
-        silent s:^\/\/::g
-    elseif ext == 'vim'
-        silent s:^\"::g
-    endif
-endfunction
-
 function! Refresh_firefox()
     if &modified
         write
@@ -374,9 +352,6 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
-map <C-a> :call Comment()<CR>
-map <C-b> :call Uncomment()<CR>
 
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
