@@ -1,6 +1,6 @@
 " vim: foldmethod=marker
 
-" Vundle bundle {{{1
+" Plugins bundle {{{1
 set nocompatible
 filetype off                  " required!
 
