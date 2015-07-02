@@ -59,6 +59,8 @@ if executable('ag')
     let g:ctrlp_use_caching = 0
 endif
 
+let g:ctrlp_open_multiple_files = 'i'
+
 " When the page starts to scroll, keep the cursor 8 lines from the top and 8 lines from the bottom
 "set scrolloff=4
 
@@ -224,7 +226,7 @@ let g:rbpt_colorpairs = [
 " let g:rbpt_max = 16
 " let g:rbpt_loadcmd_toggle = 0
 
-" Autocommands {{{2
+" Autocommands {{{1
 if has("autocmd")
     " http://stackoverflow.com/questions/1551231/highlight-variable-under-cursor-in-vim-like-in-netbeans
     "  autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
@@ -293,6 +295,9 @@ command! -nargs=1 Repl silent !echo
             \ repl.enter(content);
             \ repl.quit();" |
             \ nc localhost 4242
+
+command! -n=0 -bar LoadPlugins call plug#load('ultisnips', 'YouCompleteMe')
+    \| call youcompleteme#Enable() | :echo 'Plugins loaded'
 
 " Mappings {{{1
 nmap <leader>mh :Repl http://

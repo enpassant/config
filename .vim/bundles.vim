@@ -4,16 +4,16 @@ call plug#begin('~/.vim/bundle')
 "call vundle#begin()
 
 "--- Tools ---
-Plug 'scrooloose/nerdtree',                          {'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle' }
 Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-abolish'
-Plug 'godlygeek/tabular',                            {'on': 'Tabularize'}
+Plug 'godlygeek/tabular', {'on': 'Tabularize'}
 "--- Search & Replace ---
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'ggreer/the_silver_searcher'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 "--- Look & Feel ---
 Plug 'bling/vim-airline'
 Plug 'altercation/vim-colors-solarized'
@@ -23,24 +23,24 @@ Plug 'tpope/vim-fugitive'
 Plug 'gregsexton/gitv'
 Plug 'airblade/vim-gitgutter'
 "--- Programming ---
-Plug 'Valloric/YouCompleteMe',                       {'do':  './install.sh --clang-completer' }
-Plug 'majutsushi/tagbar',                            {'on': 'TagbarToggle' }
+Plug 'Valloric/YouCompleteMe',{'do':  './install.sh --clang-completer', 'on': [] }
+Plug 'majutsushi/tagbar', {'on': 'TagbarToggle' }
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'scrooloose/nerdcommenter'
 "--- Markdown --
-Plug 'plasticboy/vim-markdown',                      {'for': 'mkd'}
+Plug 'plasticboy/vim-markdown', {'for': 'mkd'}
 "--- HTML --
-Plug 'othree/html5.vim',                             {'for': 'html'}
+Plug 'othree/html5.vim', {'for': 'html'}
 "--- XML --
-Plug 'othree/xml.vim',                               {'for': 'xml'}
+Plug 'othree/xml.vim', {'for': 'xml'}
 "--- Javascript --
-Plug 'othree/javascript-libraries-syntax.vim',       {'for': 'javascript'}
+Plug 'othree/javascript-libraries-syntax.vim', {'for': 'javascript'}
 "--- Scala ---
-Plug 'derekwyatt/vim-scala',                         {'for': 'scala'}
+Plug 'derekwyatt/vim-scala', {'for': 'scala'}
 "--- Go ---
-Plug 'fatih/vim-go',                                 {'for': 'go'}
+Plug 'fatih/vim-go', {'for': 'go'}
 "--- reStructuredText ---
-Plug 'Rykka/riv.vim',                                {'for': 'rst'}
+Plug 'Rykka/riv.vim', {'for': 'rst'}
 "--- Removed ---
 "Plug 'gmarik/Vundle.vim'
 "Plug 'wincent/Command-T'
