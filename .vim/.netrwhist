@@ -1,8 +1,3 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/kalman'
-let g:netrw_dirhist_2='/home/kalman/.eboard/scripts'
-let g:netrw_dirhist_3='/home/kalman/.eboard'
-let g:netrw_dirhist_4='/home/kalman/.eboard/scripts'
-let g:netrw_dirhist_5='/home/kalman/jboss-as-7.0.2.Final/standalone/deployments'
-let g:netrw_dirhist_6='/home/kalman/workspace/admin/lib'
+let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_1='/etc/mysql/mariadb.conf.d'

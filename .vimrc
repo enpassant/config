@@ -201,6 +201,8 @@ set wildignore+=*.orig "Merge resolution files"
 set wildignore+=*.class "java/scala class files"
 set wildignore+=*/target/* "sbt target directory"
 
+set diffopt+=vertical
+
 " Command-T Cache
 let g:CommandTMaxCachedDirectories=0
 
@@ -225,6 +227,10 @@ let g:rbpt_colorpairs = [
             \ ]
 " let g:rbpt_max = 16
 " let g:rbpt_loadcmd_toggle = 0
+
+"set errorformat=%E\ %#[error]\ %#%f:%l:\ %m,%-Z\ %#[error]\ %p^,%C\ %#[error]\ %m,%C\ %m
+"set errorformat+=,%W\ %#[warn]\ %#%f:%l:\ %m,%-Z\ %#[warn]\ %p^,%C\ %#[warn]\ %m,%C\ %m
+"set errorformat+=,%-G%.%#
 
 " Autocommands {{{1
 if has("autocmd")
@@ -331,6 +337,9 @@ nnoremap <Leader>s :s/\<<C-r><C-w>\>//gc<left><left><left>
 " remove whitespace http://vim.wikia.com/wiki/Remove_unwanted_spaces
 " called by leader-m
 nnoremap <silent> <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl<CR>
+
+" search and replace selected text
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
 
 map <C-s> :w<CR>
 imap <C-s> <ESC>:w<CR><Insert>

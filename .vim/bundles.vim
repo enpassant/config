@@ -4,7 +4,7 @@ call plug#begin('~/.vim/bundle')
 "call vundle#begin()
 
 "--- Tools ---
-Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree', {'on': ['NERDTreeToggle', 'NERDTreeFind'] }
 Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
@@ -36,6 +36,7 @@ Plug 'othree/xml.vim', {'for': 'xml'}
 "--- Javascript --
 Plug 'othree/javascript-libraries-syntax.vim', {'for': 'javascript'}
 "--- Scala ---
+Plug 'vim-sbt'
 Plug 'derekwyatt/vim-scala', {'for': 'scala'}
 "--- Go ---
 Plug 'fatih/vim-go', {'for': 'go'}
