@@ -4,11 +4,13 @@
 set nocompatible
 filetype off                  " required!
 
+if has("autocmd")
+    autocmd BufRead,BufNewFile *.sbt setfiletype scala
+end
+
 source ~/.vim/bundles.vim
 
 " Preferences {{{1
-syntax on
-
 " ctags
 set tags=./tags,tags;/
 
@@ -125,7 +127,7 @@ set wrapmargin=0
 
 " Solarized
 set t_Co=256
-syntax on
+syntax enable
 let g:solarized_termcolors = 256
 let g:solarized_termtrans = 1
 colorscheme solarized
