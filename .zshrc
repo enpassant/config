@@ -1,7 +1,7 @@
 # Exports {{{
 #export GITHUB_USER="your-username"
 export PATH=~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin # Reorder PATH so local bin is first
-export GREP_OPTIONS='--color=auto'
+#export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
 export MANPAGER="less -X" # Don’t clear the screen after quitting a manual page
 export EDITOR="vim"
@@ -48,6 +48,7 @@ alias tmuxkillall="tmux ls | cut -d : -f 1 | xargs -I {} tmux kill-session -t {}
 alias ct="ctags -R --exclude=.git --exclude=node_modules"
 alias dotfiles="ls -a | grep '^\.' | grep --invert-match '\.DS_Store\|\.$'"
 alias ls='ls -F --color=auto'
+alias scala="scala -Dscala.color=true"
 # }}}
 
 # Auto Completion {{{
@@ -309,6 +310,8 @@ function postexec {
   set_running_app
 }
 # }}}
+
+compdef '_files -W /projects/kalman/' tmp.sh
 
 vim() STTY=-ixon command vim "$@"
 
