@@ -46,7 +46,7 @@ filetype plugin indent on
 "hi PmenuThumb cterm=reverse gui=reverse
 
 " colorcolumn / print margin
-set colorcolumn=120
+set colorcolumn=80
 
 " http://robots.thoughtbot.com/faster-grepping-in-vim/
 " The Silver Searcher
@@ -234,6 +234,11 @@ let g:rbpt_colorpairs = [
 "set errorformat+=,%W\ %#[warn]\ %#%f:%l:\ %m,%-Z\ %#[warn]\ %p^,%C\ %#[warn]\ %m,%C\ %m
 "set errorformat+=,%-G%.%#
 
+let g:vimwiki_list = [{
+                     \ 'syntax': 'markdown',
+                     \ 'ext': '.md',
+                     \ 'custom_wiki2html': 'wiki2html.sh'}]
+
 " Autocommands {{{1
 if has("autocmd")
     " http://stackoverflow.com/questions/1551231/highlight-variable-under-cursor-in-vim-like-in-netbeans
@@ -252,6 +257,7 @@ if has("autocmd")
 
     autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags noci
     autocmd FileType html set omnifunc=htmlcomplete#CompleteTags noci
+    autocmd FileType vimwiki call SetMarkdownOptions()
 
     " http://stackoverflow.com/questions/16743112/open-item-from-quickfix-window-in-vertical-split
     autocmd! FileType qf nnoremap <buffer> <leader><Enter> <C-w><Enter><C-w>L
@@ -270,7 +276,8 @@ if has("autocmd")
     " gggqG<C-o><C-o><leader><w>
 
     autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-    autocmd BufWriteCmd *.html,*.css,*.gtpl,*.md,*.rst :call Refresh_firefox()
+    autocmd BufWriteCmd *.html,*.css,*.gtpl,*.rst :call Refresh_firefox()
+    autocmd BufWriteCmd *.md :call Convert_Markdown()
     autocmd BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
 endif
 
@@ -280,15 +287,33 @@ endif
 " au Syntax * RainbowParenthesesLoadBraces
 
 " Functions {{{1
+function! SetMarkdownOptions()
+    call VimwikiSet('syntax', 'markdown')
+    call VimwikiSet('custom_wiki2html', 'wiki2html.sh')
+    call VimwikiSet('path_html', '~/vimwiki_html/')
+endfunction
+
+function! Convert_Markdown()
+    if &modified
+        write
+        silent !pandoc -s -f markdown -t html -o /tmp/%:t.html %:p
+        call Refresh_firefox_x()
+    endif
+endfunction
+
+function! Refresh_firefox_x()
+    silent !echo  'var vimYo = content.window.pageYOffset;
+                \ var vimXo = content.window.pageXOffset;
+                \ BrowserReload();
+                \ content.window.scrollTo(vimXo,vimYo);
+                \ repl.quit();'  |
+                \ nc -w 1 localhost 4242 2>&1 > /dev/null
+endfunction
+
 function! Refresh_firefox()
     if &modified
         write
-        silent !echo  'vimYo = content.window.pageYOffset;
-                    \ vimXo = content.window.pageXOffset;
-                    \ BrowserReload();
-                    \ content.window.scrollTo(vimXo,vimYo);
-                    \ repl.quit();'  |
-                    \ nc -w 1 localhost 4242 2>&1 > /dev/null
+        call Refresh_firefox_x()
     endif
 endfunction
 
@@ -310,7 +335,7 @@ command! -n=0 -bar LoadPlugins call plug#load('ultisnips', 'YouCompleteMe')
 " Mappings {{{1
 nmap <leader>mh :Repl http://
 " mnemonic is MozRepl Http
-nmap <silent> <leader>ml :Repl file:///%:p<CR>
+nmap <silent> <leader>ml :Repl file:///%:p
 " mnemonic is MozRepl Local
 nmap <silent> <leader>mm :Repl http://localhost/
 " mnemonic is MozRepl Development
@@ -350,14 +375,14 @@ imap <C-s> <ESC>:w<CR><Insert>
 map <C-g> <C-]>
 
 " Ctl-X close the current buffer
-nmap <C-x> <Plug>Kwbd
+nmap <C-q> <Plug>Kwbd
 
 " Remap VIM 0 to first non-blank character
 " map 0 ^
 
 " Treat long lines as break lines (useful when moving around in them)
-map j gj
-map k gk
+" map j gj
+" map k gk
 
 " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
 map <space> /
@@ -431,8 +456,8 @@ vmap <Tab> >gv
 " vno <up>    <Nop>
 
 nmap é :
-nmap <leader>md :%!markdown<CR>
-vmap <leader>md :!markdown<CR>
+nmap <leader>md :%!pandoc<CR>
+vmap <leader>md :!pandoc<CR>
 
 nmap <silent> <leader>rst :%!rst2html -q --stylesheet-path ~/.vim/bundle/riv.vim/autoload/riv/html/html4css1.css<CR><CR>
 vmap <silent> <leader>rst :!rst2html -q --link-stylesheet<CR>11dd/<\/html<CR>kk3dd
@@ -465,3 +490,5 @@ vnoremap <F5> "zp
 
 " Toggle relativenumber
 nnoremap <F6> :set rnu!<CR>
+
+inoremap hh <ESC>
