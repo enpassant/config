@@ -465,6 +465,15 @@ vmap <silent> <leader>rst :!rst2html -q --link-stylesheet<CR>11dd/<\/html<CR>kk3
 nmap <leader>ev :ed ~/.vimrc<CR>
 nmap <leader>eb :ed ~/.vim/bundles.vim<CR>
 
+" For tmux
+if &term =~ '^screen'
+    " tmux will send xterm-style keys when its xterm-keys option is on
+    execute "set <xUp>=\e[1;*A"
+    execute "set <xDown>=\e[1;*B"
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+endif
+
 map ő [
 map ú ]
 
