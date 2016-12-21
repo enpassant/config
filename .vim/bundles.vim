@@ -46,6 +46,8 @@ Plug 'Rykka/riv.vim', {'for': 'rst'}
 Plug 'vimwiki/vimwiki'
 "--- Refactor
 Plug 'machakann/vim-swap'
+"--- Integrate with tmux
+Plug 'christoomey/vim-tmux-navigator'
 "--- Removed ---
 "Plug 'gmarik/Vundle.vim'
 "Plug 'wincent/Command-T'
