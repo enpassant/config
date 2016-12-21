@@ -36,12 +36,16 @@ Plug 'othree/xml.vim', {'for': 'xml'}
 "--- Javascript --
 Plug 'othree/javascript-libraries-syntax.vim', {'for': 'javascript'}
 "--- Scala ---
-Plug 'vim-sbt'
+"Plug 'derekwyatt/vim-sbt', {'for': 'scala'}
 Plug 'derekwyatt/vim-scala', {'for': 'scala'}
 "--- Go ---
 Plug 'fatih/vim-go', {'for': 'go'}
 "--- reStructuredText ---
 Plug 'Rykka/riv.vim', {'for': 'rst'}
+"--- Vim Wiki
+Plug 'vimwiki/vimwiki'
+"--- Refactor
+Plug 'machakann/vim-swap'
 "--- Removed ---
 "Plug 'gmarik/Vundle.vim'
 "Plug 'wincent/Command-T'

@@ -469,11 +469,11 @@ map ő [
 map ú ]
 
 " Bubble single lines
-nmap <C-up> [e
-nmap <C-down> ]e
+nmap <C-Up> [e
+nmap <C-Down> ]e
 " Bubble multiple lines
-vmap <C-up> [egv
-vmap <C-down> ]egv
+vmap <C-Up> [egv
+vmap <C-Down> ]egv
 
 " Toggle highlighting
 nnoremap <F3> :noh<CR>
