@@ -279,6 +279,7 @@ if has("autocmd")
     autocmd BufWriteCmd *.html,*.css,*.gtpl,*.rst :call Refresh_firefox()
     autocmd BufWriteCmd *.md :call Convert_Markdown()
     autocmd BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
+    autocmd BufNewFile,BufRead *.scala setlocal noet ts=2 sw=2 sts=2
 endif
 
 " au VimEnter * RainbowParenthesesToggle
@@ -315,6 +316,13 @@ function! Refresh_firefox()
         write
         call Refresh_firefox_x()
     endif
+endfunction
+
+function! RefactorToVariable()
+    let @x = input('Enter variable name: ')
+    execute ':normal i' . @x
+    call append(line('.')-1, @x . ' = ' . @y)
+    execute ':normal kV=^i'
 endfunction
 
 " Commands {{{1
@@ -481,23 +489,26 @@ map ú ]
 nmap <C-Up> [e
 nmap <C-Down> ]e
 " Bubble multiple lines
-vmap <C-Up> [egv
-vmap <C-Down> ]egv
+xmap <C-Up> [egv
+xmap <C-Down> ]egv
 
 " Toggle highlighting
 nnoremap <F3> :noh<CR>
 
 " Copy the current word or visually selected text to the clipboard:
-
 nnoremap <F4> "zyiw
-vnoremap <F4> "zy
+xnoremap <F4> "zy
 
 " Replace the current word or visually selected text with the clipboard contents:
-
 nnoremap <F5> viw"zp
-vnoremap <F5> "zp
+xnoremap <F5> "zp
 
 " Toggle relativenumber
 nnoremap <F6> :set rnu!<CR>
 
 inoremap hh <ESC>
+
+" Copy the current word or visually selected text to the clipboard:
+xnoremap <F7> "yx:call RefactorToVariable()<CR>
+
+"}}}
