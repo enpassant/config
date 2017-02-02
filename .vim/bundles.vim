@@ -9,6 +9,7 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-repeat'
 Plug 'godlygeek/tabular', {'on': 'Tabularize'}
 "--- Search & Replace ---
 Plug 'nelstrom/vim-visual-star-search'

@@ -511,4 +511,8 @@ inoremap hh <ESC>
 " Copy the current word or visually selected text to the clipboard:
 xnoremap <F7> "yx:call RefactorToVariable()<CR>
 
+nnoremap <Plug>IncrementArrayIndex 0f[l<C-a>j
+\:call repeat#set("\<Plug>IncrementArrayIndex")<CR>
+nmap <leader>i <Plug>IncrementArrayIndex
+
 "}}}
