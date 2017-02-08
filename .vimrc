@@ -279,7 +279,8 @@ if has("autocmd")
     autocmd BufWriteCmd *.html,*.css,*.gtpl,*.rst :call Refresh_firefox()
     autocmd BufWriteCmd *.md :call Convert_Markdown()
     autocmd BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
-    autocmd BufNewFile,BufRead *.scala setlocal noet ts=2 sw=2 sts=2
+    autocmd BufNewFile,BufRead *.scala setlocal ts=2 sw=2 sts=2
+    autocmd BufRead,BufNewFile *.gitconfig* set filetype=gitconfig
 endif
 
 " au VimEnter * RainbowParenthesesToggle
