@@ -281,6 +281,7 @@ if has("autocmd")
     autocmd BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
     autocmd BufNewFile,BufRead *.scala setlocal ts=2 sw=2 sts=2
     autocmd BufRead,BufNewFile *.gitconfig* set filetype=gitconfig
+    autocmd BufRead,BufNewFile *.hbs set filetype=html
 endif
 
 " au VimEnter * RainbowParenthesesToggle
