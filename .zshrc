@@ -321,7 +321,7 @@ function precmd {
 }
 
 function set_running_app {
-  printf "\e]1; $PWD:t:$(history $HISTCMD | cut -b7- ) \a"
+  printf "\e]1; $PWD:t:$(history $HISTCMD | tr -d % | cut -b7- ) \a"
 }
 
 function preexec {
@@ -340,3 +340,5 @@ vim() STTY=-ixon command vim "$@"
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+source /projects/kalman/cbt/shell-integration/cbt-completions.zsh
