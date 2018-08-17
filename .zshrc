@@ -333,12 +333,18 @@ function postexec {
 }
 # }}}
 
-compdef '_files -W /projects/kalman/' tmp.sh
+compdef '_files -W /projects/kalman/' show.sh
 
-vim() STTY=-ixon command vim "$@"
+function vim { STTY=-ixon command vim "$@" }
 
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 source /projects/kalman/cbt/shell-integration/cbt-completions.zsh
+
+# OPAM configuration
+. /home/kalman/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
