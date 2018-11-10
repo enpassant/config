@@ -334,6 +334,7 @@ function postexec {
 # }}}
 
 compdef '_files -W /projects/kalman/' show.sh
+compdef '_files -W /projects/kalman/' mshow.sh
 
 function vim { STTY=-ixon command vim "$@" }
 

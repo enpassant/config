@@ -112,8 +112,8 @@ set sessionoptions=blank,buffers,curdir,folds,help,tabpages,winsize
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-s-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-s-k>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
@@ -272,6 +272,7 @@ if has("autocmd")
     " Format scala code
     let g:scala_sort_across_groups=1
     " au BufEnter *.scala setl formatprg=java\ -jar\ /Users/stefanb/Exec/scalariform.jar\ -f\ -q\ +alignParameters\ +alignSingleLineCaseStatements\ +doubleIndentClassDeclaration\ +preserveDanglingCloseParenthesis\ +rewriteArrowSymbols\ +preserveSpaceBeforeArguments\ --stdin\ --stdout
+    autocmd BufRead,BufNewFile *.sc set filetype=scala
     autocmd! FileType scala nmap <leader>m :SortScalaImports<CR>
     " gggqG<C-o><C-o><leader><w>
 
@@ -509,6 +510,7 @@ xnoremap <F5> "zp
 nnoremap <F6> :set rnu!<CR>
 
 inoremap hh <ESC>
+inoremap űű <ESC>/
 
 " Copy the current word or visually selected text to the clipboard:
 xnoremap <F7> "yx:call RefactorToVariable()<CR>

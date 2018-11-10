@@ -1,4 +1,4 @@
-snippet actor "Actor definitin" b
+snippet actor "Actor definition" b
 import akka.actor.{Actor, ActorLogging, ActorRef, Props}
 
 class $1 extends Actor with ActorLogging {
@@ -12,6 +12,20 @@ class $1 extends Actor with ActorLogging {
 
 object $1 {
   case object $2
+}
+endsnippet
+
+snippet test "Test file"
+package $1
+
+import org.scalatest._
+
+class $2 extends FunSpec with Matchers {
+  describe("$3") {
+    it("should $4") {
+      $0
+    }
+  }
 }
 endsnippet
 
