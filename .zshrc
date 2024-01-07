@@ -1,6 +1,7 @@
 # Exports {{{
 #export GITHUB_USER="your-username"
-export PATH=~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin # Reorder PATH so local bin is first
+source ~/.zprofile
+export PATH=$PATH:~/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin # Reorder PATH so local bin is first
 #export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
 export MANPAGER="less -X" # Don’t clear the screen after quitting a manual page
@@ -47,8 +48,9 @@ alias tmuxsrc="tmux source-file ~/.tmux.conf"
 alias tmuxkillall="tmux ls | cut -d : -f 1 | xargs -I {} tmux kill-session -t {}" # tmux kill all sessions
 alias ct="ctags -R --exclude=.git --exclude=node_modules"
 alias dotfiles="ls -a | grep '^\.' | grep --invert-match '\.DS_Store\|\.$'"
-alias ls='ls -F --color=auto'
+alias ls='ls -hF --color=auto'
 alias scala="scala -Dscala.color=true"
+alias df='df -h'
 # }}}
 
 # Auto Completion {{{
@@ -167,6 +169,7 @@ setopt auto_name_dirs # any parameter that is set to the absolute name of a dire
 setopt complete_in_word # Allow completion from within a word/phrase
 
 unsetopt menu_complete # do not autoselect the first completion entry
+unsetopt nomatch
 
 # ===== Correction
 setopt correct # spelling correction for commands
@@ -343,9 +346,12 @@ autoload -Uz compinit && compinit -i
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-export PATH="$HOME/.cargo/bin:$PATH"
 
 source /projects/kalman/cbt/shell-integration/cbt-completions.zsh
+source /projects/kalman/mill-zsh-completions/mill-zsh-completions.plugin.zsh
 
 # OPAM configuration
 . /home/kalman/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="/snap/bin:/home/kalman/.local/share/coursier/bin:$PATH"
