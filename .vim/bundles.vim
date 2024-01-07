@@ -22,6 +22,7 @@ Plug 'drmikehenry/vim-fontsize'
 "--- Git ---
 Plug 'tpope/vim-fugitive'
 Plug 'gregsexton/gitv'
+"Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-gitgutter'
 "--- Programming ---
 Plug 'Valloric/YouCompleteMe',{'do':  './install.sh --clang-completer', 'on': [] }
@@ -49,6 +50,8 @@ Plug 'vimwiki/vimwiki'
 Plug 'machakann/vim-swap'
 "--- Integrate with tmux
 Plug 'christoomey/vim-tmux-navigator'
+"Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "--- Removed ---
 "Plug 'gmarik/Vundle.vim'
 "Plug 'wincent/Command-T'

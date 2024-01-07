@@ -17,6 +17,8 @@ set tags=./tags,tags;/
 " Works undo after buffer changes
 set hidden
 
+set encoding=utf-8
+
 " line numbers
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
@@ -26,7 +28,7 @@ set guifont=Liberation\ Mono\ for\ Powerline\ 11
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tagbar#enabled = 0
 
-let g:gitgutter_sign_column_always = 1
+set signcolumn=yes
 set number
 set relativenumber
 
@@ -241,48 +243,52 @@ let g:vimwiki_list = [{
 
 " Autocommands {{{1
 if has("autocmd")
-    " http://stackoverflow.com/questions/1551231/highlight-variable-under-cursor-in-vim-like-in-netbeans
-    "  autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
+    augroup vimrc_autocmd
+      autocmd!
+        " http://stackoverflow.com/questions/1551231/highlight-variable-under-cursor-in-vim-like-in-netbeans
+        "  autocmd CursorMoved * exe printf('match IncSearch /\V\<%s\>/', escape(expand('<cword>'), '/\'))
 
-    " highlight unwanted(trailing) whitespace
-    " + have this highlighting not appear whilst you are typing in insert mode
-    " + have the highlighting of whitespace apply when you open new buffers
-    " http://vim.wikia.com/wiki/Highlight_unwanted_spaces
-    highlight ExtraWhitespace ctermbg=red guibg=red
-    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-    autocmd BufWinLeave * call clearmatches()
+        " highlight unwanted(trailing) whitespace
+        " + have this highlighting not appear whilst you are typing in insert mode
+        " + have the highlighting of whitespace apply when you open new buffers
+        " http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+        highlight ExtraWhitespace ctermbg=red guibg=red
+        autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+        autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+        autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+        autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+        autocmd BufWinLeave * call clearmatches()
 
-    autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags noci
-    autocmd FileType html set omnifunc=htmlcomplete#CompleteTags noci
-    autocmd FileType vimwiki call SetMarkdownOptions()
+        autocmd FileType xml set omnifunc=xmlcomplete#CompleteTags noci
+        autocmd FileType html set omnifunc=htmlcomplete#CompleteTags noci
+        autocmd FileType vimwiki call SetMarkdownOptions()
 
-    " http://stackoverflow.com/questions/16743112/open-item-from-quickfix-window-in-vertical-split
-    autocmd! FileType qf nnoremap <buffer> <leader><Enter> <C-w><Enter><C-w>L
+        " http://stackoverflow.com/questions/16743112/open-item-from-quickfix-window-in-vertical-split
+        autocmd! FileType qf nnoremap <buffer> <leader><Enter> <C-w><Enter><C-w>L
 
-    autocmd BufReadPost fugitive://* set bufhidden=delete
+        autocmd BufReadPost fugitive://* set bufhidden=delete
 
-    autocmd User fugitive
-                \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
-                \   nnoremap <buffer> .. :edit %:h<CR> |
-                \ endif
+        autocmd User fugitive
+                    \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+                    \   nnoremap <buffer> .. :edit %:h<CR> |
+                    \ endif
 
-    " Format scala code
-    let g:scala_sort_across_groups=1
-    " au BufEnter *.scala setl formatprg=java\ -jar\ /Users/stefanb/Exec/scalariform.jar\ -f\ -q\ +alignParameters\ +alignSingleLineCaseStatements\ +doubleIndentClassDeclaration\ +preserveDanglingCloseParenthesis\ +rewriteArrowSymbols\ +preserveSpaceBeforeArguments\ --stdin\ --stdout
-    autocmd BufRead,BufNewFile *.sc set filetype=scala
-    autocmd! FileType scala nmap <leader>m :SortScalaImports<CR>
-    " gggqG<C-o><C-o><leader><w>
+        " Format scala code
+        let g:scala_sort_across_groups=1
+        " au BufEnter *.scala setl formatprg=java\ -jar\ /Users/stefanb/Exec/scalariform.jar\ -f\ -q\ +alignParameters\ +alignSingleLineCaseStatements\ +doubleIndentClassDeclaration\ +preserveDanglingCloseParenthesis\ +rewriteArrowSymbols\ +preserveSpaceBeforeArguments\ --stdin\ --stdout
+        autocmd BufRead,BufNewFile *.sc set filetype=scala
+        autocmd! FileType scala nmap <leader>m :SortScalaImports<CR>
+        " gggqG<C-o><C-o><leader><w>
 
-    autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-    autocmd BufWriteCmd *.html,*.css,*.gtpl,*.rst :call Refresh_firefox()
-    autocmd BufWriteCmd *.md :call Convert_Markdown()
-    autocmd BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
-    autocmd BufNewFile,BufRead *.scala setlocal ts=2 sw=2 sts=2
-    autocmd BufRead,BufNewFile *.gitconfig* set filetype=gitconfig
-    autocmd BufRead,BufNewFile *.hbs set filetype=html
+        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+        autocmd BufWriteCmd *.html,*.css,*.gtpl,*.rst :call Refresh_firefox()
+        autocmd BufWriteCmd *.md :call Convert_Markdown()
+        autocmd BufNewFile,BufRead *.go setlocal noet ts=4 sw=4 sts=4
+        autocmd BufNewFile,BufRead *.scala setlocal ts=2 sw=2 sts=2
+        autocmd FileType json syntax match Comment +\/\/.\+$+
+        autocmd BufRead,BufNewFile *.gitconfig* set filetype=gitconfig
+        autocmd BufRead,BufNewFile *.hbs set filetype=html
+    augroup END
 endif
 
 " au VimEnter * RainbowParenthesesToggle
@@ -367,10 +373,10 @@ nnoremap <silent> <M-F12> :bn!<CR>
 nnoremap <silent> <leader>p :bp<CR>
 
 " Replace word under cursor globally
-nnoremap <Leader>a :%s/\<<C-r><C-w>\>//gc<left><left><left>
+nnoremap <Leader>rg :%s/\<<C-r><C-w>\>//gc<left><left><left>
 
 " Replace word under cursor in line
-nnoremap <Leader>s :s/\<<C-r><C-w>\>//gc<left><left><left>
+nnoremap <Leader>rl :s/\<<C-r><C-w>\>//gc<left><left><left>
 
 " remove whitespace http://vim.wikia.com/wiki/Remove_unwanted_spaces
 " called by leader-m
@@ -378,6 +384,8 @@ nnoremap <silent> <leader>w :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar>:nohl
 
 " search and replace selected text
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+" search for visually selected text
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 map <C-s> :w<CR>
 imap <C-s> <ESC>:w<CR><Insert>
@@ -395,10 +403,6 @@ nmap <C-q> <Plug>Kwbd
 " map j gj
 " map k gk
 
-" Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
-map <space> /
-map <c-space> ?
-
 " Smart way to move between windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -412,7 +416,7 @@ nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 nnoremap \ :Ag<SPACE>
 
 " ZoomWin
-nmap <leader>o <c-w>o
+"nmap <leader>o <c-w>o
 
 " Selection with shift+ arrows
 " imap <S-left> <ESC>v<left>
@@ -509,14 +513,87 @@ xnoremap <F5> "zp
 " Toggle relativenumber
 nnoremap <F6> :set rnu!<CR>
 
-inoremap hh <ESC>
+inoremap yy <ESC>
 inoremap űű <ESC>/
 
 " Copy the current word or visually selected text to the clipboard:
-xnoremap <F7> "yx:call RefactorToVariable()<CR>
+xnoremap <S-F6> "yx:call RefactorToVariable()<CR>
 
 nnoremap <Plug>IncrementArrayIndex 0f[l<C-a>j
 \:call repeat#set("\<Plug>IncrementArrayIndex")<CR>
 nmap <leader>i <Plug>IncrementArrayIndex
 
+map <C-_> <Plug>NERDCommenterToggle
+nnoremap Y Y
+"}}}
+" Configuration for coc.nvim {{{1
+
+" Smaller updatetime for CursorHold & CursorHoldI
+set updatetime=300
+
+" don't give |ins-completion-menu| messages.
+set shortmess+=c
+
+" always show signcolumns
+set signcolumn=yes
+
+" Some server have issues with backup files, see #649
+set nobackup
+set nowritebackup
+
+" Better display for messages
+set cmdheight=2
+
+" Use <C-space> for trigger completion.
+inoremap <silent><expr> <C-space> coc#refresh()
+
+" Use <cr> for confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+" Use `[c` and `]c` for navigate diagnostics
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Remap for do codeAction of current line
+nmap <leader>ac <Plug>(coc-codeaction)
+
+" Remap for do action format
+nnoremap <silent> F :call CocAction('format')<CR>
+
+" Use K for show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+" Show all diagnostics
+nnoremap <silent> <space>a  :<C-u>CocList diagnostics<cr>
+" Find symbol of current document
+nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
+" Search workspace symbols
+nnoremap <silent> <space>s  :<C-u>CocList -I symbols<cr>
+" Do default action for next item.
+nnoremap <silent> <space>j  :<C-u>CocNext<CR>
+" Do default action for previous item.
+nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
+" Resume latest coc list
+nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 "}}}
